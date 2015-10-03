@@ -1,24 +1,24 @@
-function [XS,YS,ZS]=itrf2008_to_itrf97(X,Y,Z)
+function [XS,YS,ZS]=function_itrf2008_to_itrf97(X,Y,Z)
 format long g;
-%%itrf2008²Î¿¼¿ò¼Ü×ª»»Îªitrf97
+%%itrf2008å‚è€ƒæ¡†æ¶è½¬æ¢ä¸ºitrf97
 % by zzh_my@163.com
-%%Ö¸¶¨²ÎÊı£¬ransformation parameters at epoch 2000.0 and their rates from
+%%æŒ‡å®šå‚æ•°ï¼Œransformation parameters at epoch 2000.0 and their rates from
 %%ITRF2008 to ITRF97
 %http://itrf.ensg.ign.fr/ITRF_solutions/2008/tp_08-05.php
-%×ª»»²ÎÊıÀ´×Ô¡°´óµØ²âÁ¿¿ØÖÆµã×ø±ê×ª»»¼¼Êõ¹æ³Ì¡±
+%è½¬æ¢å‚æ•°æ¥è‡ªâ€œå¤§åœ°æµ‹é‡æ§åˆ¶ç‚¹åæ ‡è½¬æ¢æŠ€æœ¯è§„ç¨‹â€
 Tx=4.8;Ty=2.6;Tz=-33.2;D=2.92;Rx=0.000;Ry=0.000;Rz=	0.06;
 TxV=0.1;TyV=-0.5;TzV=-3.2;DV=0.09;RxV=0.000;RyV=0.000;RzV=0.02;
 
-%%(1)×ªµ¥Î»
-Tx=Tx*10^(-3);%mm±äÎªµ¥Î»m
+%%(1)è½¬å•ä½
+Tx=Tx*10^(-3);%mmå˜ä¸ºå•ä½m
 Ty=Ty*10^(-3);
 Tz=Tz*10^(-3);
 D=D*10^(-9);
-Rz=Rz*10^(-3)/3600*(pi/180);%ºÁ½ÇÃë »¯Îª »¡¶È
-%%(2)×ö¾ØÕó
+Rz=Rz*10^(-3)/3600*(pi/180);%æ¯«è§’ç§’ åŒ–ä¸º å¼§åº¦
+%%(2)åšçŸ©é˜µ
 T=[Tx;Ty;Tz];
 MA=[D,-Rz,Ry;Rz,D,-Rx;-Ry,Rx,D];
-%%(3)¼ÆËã
+%%(3)è®¡ç®—
 TransBefore=[X;Y;Z];
 Trans=TransBefore+T+MA*TransBefore;
 XS=Trans(1);
